@@ -9,6 +9,7 @@
  */
 
 import hoodieFront from "@/assets/front-hoodie.png";
+import shortBasic31 from "@/assets/shorts-basic/31.png";
 import blunt01 from "@/assets/marcas/blunt/01.webp";
 import blunt02 from "@/assets/marcas/blunt/02.webp";
 import blunt03 from "@/assets/marcas/blunt/03.webp";
@@ -214,6 +215,8 @@ export interface CatalogProduct {
   price: number;
   /** preço "de" opcional, para promoções */
   compareAtPrice?: number;
+  /** produto cadastrado, aguardando definição de preço */
+  pricePending?: boolean;
   /** imagem principal */
   image: string;
   /** imagens adicionais (a 1ª é usada no hover do card) */
@@ -254,7 +257,7 @@ export const CATEGORIES: Category[] = [
     name: "Shorts Basic",
     hasBrands: false,
     description: "Shorts básicos para compor qualquer look.",
-    cover: sufgang01,
+    cover: shortBasic31,
   },
   {
     slug: "moletom-oversize",
@@ -408,6 +411,31 @@ const EXTRA_BRAND_PRODUCTS: CatalogProduct[] = BRAND_IMAGE_SETS.flatMap(({ slug,
       ];
     }),
 );
+
+const shortsBasicImageModules = import.meta.glob<string>("@/assets/shorts-basic/*.{png,jpeg,jpg}", {
+  eager: true,
+  import: "default",
+});
+
+const SHORTS_BASIC_PRODUCTS: CatalogProduct[] = Object.entries(shortsBasicImageModules)
+  .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }))
+  .map(([, image], index) => {
+    const itemNumber = String(index + 1).padStart(3, "0");
+
+    return {
+      slug: `short-basic-${itemNumber}`,
+      name: `Short Basic ${index + 1}`,
+      sku: `SH-BASIC-${itemNumber}`,
+      category: "shorts-basic" as const,
+      price: 0,
+      pricePending: true,
+      image,
+      sizes: TAMANHOS_PADRAO,
+      colors: ["Preta"],
+      description: `Short Basic preto, estampa ${index + 1}.`,
+      stock: 10,
+    };
+  });
 
 export const PRODUCTS: CatalogProduct[] = [
   {
@@ -4444,6 +4472,7 @@ export const PRODUCTS: CatalogProduct[] = [
   },
   ...NIKE_PRODUCTS,
   ...EXTRA_BRAND_PRODUCTS,
+  ...SHORTS_BASIC_PRODUCTS,
 ];
 
 /* ------------------------------------------------------------------ */

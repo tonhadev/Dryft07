@@ -26,8 +26,13 @@ export default function ProductQuickView({ product, onClose }: Props) {
   if (!product) return null;
   const images = productImages(product);
   const colors = productColors(product);
+  const pricePending = product.pricePending;
 
   const handleAdd = () => {
+    if (pricePending) {
+      toast.info("Preço em breve");
+      return;
+    }
     if (!size) {
       toast.error("Selecione um tamanho");
       return;
@@ -78,7 +83,7 @@ export default function ProductQuickView({ product, onClose }: Props) {
             </DialogDescription>
 
             <p className="text-sm">
-              {formatBRL(product.price)}
+              {pricePending ? "Preço em breve" : formatBRL(product.price)}
               {product.compareAtPrice && (
                 <span className="ml-2 text-muted-foreground line-through">
                   {formatBRL(product.compareAtPrice)}
@@ -138,10 +143,10 @@ export default function ProductQuickView({ product, onClose }: Props) {
 
             <button
               onClick={handleAdd}
-              disabled={product.stock <= 0}
+              disabled={product.stock <= 0 || pricePending}
               className="w-full bg-primary text-primary-foreground text-xs uppercase tracking-wide py-3 hover:opacity-80 transition-opacity disabled:opacity-40"
             >
-              {product.stock > 0 ? "Adicionar à sacola" : "Esgotado"}
+              {product.stock <= 0 ? "Esgotado" : pricePending ? "Preço em breve" : "Adicionar à sacola"}
             </button>
 
             <Link

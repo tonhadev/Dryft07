@@ -11,6 +11,7 @@ export default function CatalogCard({ product, onQuickView }: Props) {
   const images = productImages(product);
   const [hover, setHover] = useState(false);
   const soldOut = product.stock <= 0;
+  const pricePending = product.pricePending;
   const image = hover && images[1] ? images[1] : images[0];
 
   return (
@@ -44,7 +45,7 @@ export default function CatalogCard({ product, onQuickView }: Props) {
       <div className="pt-3 space-y-1">
         <h3 className="text-xs uppercase line-clamp-1">{product.name}</h3>
         <p className="text-xs text-muted-foreground">
-          {formatBRL(product.price)}
+          {pricePending ? "Preço em breve" : formatBRL(product.price)}
           {product.compareAtPrice && (
             <span className="ml-2 line-through opacity-60">
               {formatBRL(product.compareAtPrice)}
@@ -60,10 +61,10 @@ export default function CatalogCard({ product, onQuickView }: Props) {
           </Link>
           <button
             onClick={() => onQuickView(product)}
-            disabled={soldOut}
+            disabled={soldOut || pricePending}
             className="flex-1 text-[10px] uppercase tracking-wide bg-primary text-primary-foreground py-2 hover:opacity-80 transition-opacity disabled:opacity-40"
           >
-            {soldOut ? "Esgotado" : "Adicionar"}
+            {soldOut ? "Esgotado" : pricePending ? "Em breve" : "Adicionar"}
           </button>
         </div>
       </div>

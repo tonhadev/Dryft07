@@ -35,11 +35,16 @@ export default function CatalogProductPage() {
   const brand = getBrand(product.brand);
   const images = productImages(product);
   const colors = productColors(product);
+  const pricePending = product.pricePending;
   const related = getProducts(product.category, product.brand ?? null)
     .filter((p) => p.slug !== product.slug)
     .slice(0, 4);
 
   const handleAdd = () => {
+    if (pricePending) {
+      toast.info("Preço em breve");
+      return;
+    }
     const chosen = product.sizes?.length ? size : "Único";
     if (!chosen) {
       toast.error("Selecione um tamanho");
@@ -124,7 +129,7 @@ export default function CatalogProductPage() {
             )}
             <h1 className="text-lg uppercase">{product.name}</h1>
             <p className="text-sm">
-              {formatBRL(product.price)}
+              {pricePending ? "Preço em breve" : formatBRL(product.price)}
               {product.compareAtPrice && (
                 <span className="ml-2 text-muted-foreground line-through">
                   {formatBRL(product.compareAtPrice)}
@@ -179,10 +184,10 @@ export default function CatalogProductPage() {
 
             <button
               onClick={handleAdd}
-              disabled={product.stock <= 0}
+              disabled={product.stock <= 0 || pricePending}
               className="w-full bg-primary text-primary-foreground text-xs uppercase tracking-wide py-4 hover:opacity-80 transition-opacity disabled:opacity-40"
             >
-              {product.stock > 0 ? "Adicionar à sacola" : "Esgotado"}
+              {product.stock <= 0 ? "Esgotado" : pricePending ? "Preço em breve" : "Adicionar à sacola"}
             </button>
 
             <div className="space-y-2 border-t border-border pt-6">

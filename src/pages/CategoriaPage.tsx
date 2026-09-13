@@ -58,7 +58,7 @@ export default function CategoriaPage() {
           <p className="text-xs text-muted-foreground max-w-xl">{category.description}</p>
         </header>
 
-        {category.hasBrands && brands.length > 0 && (
+        {(category.hasBrands || category.slug === "shorts-basic") && (
           <div className="-mx-4 md:mx-0 mb-8 border-b border-border">
             <div className="flex gap-2 overflow-x-auto px-4 md:px-0 pb-3 scrollbar-none">
               <button
