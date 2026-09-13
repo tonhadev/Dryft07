@@ -149,7 +149,7 @@ export default function OffCanvasMenu({ open, onClose, onOpenSearch }: OffCanvas
           </div>
 
           <div className="page-padding py-4">
-            <p className="text-xs text-muted-foreground">© 2025 Dryft07</p>
+            <p className="text-xs text-muted-foreground">© 2026 Dryft07 · joaodev</p>
           </div>
         </div>
       </div>

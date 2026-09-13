@@ -59,7 +59,7 @@ const ShippingPage = () => {
                 <div>
                   <h3 className="text-foreground mb-2">How to Return</h3>
                   <p>
-                    To initiate a return, please contact us at returns@void.com with your order number. We will provide you with a return shipping label and instructions.
+                    To initiate a return, contact Dryft07 through WhatsApp with your order number. We will provide return instructions.
                   </p>
                 </div>
 
@@ -82,14 +82,14 @@ const ShippingPage = () => {
             <section>
               <h2 className="text-foreground mb-3">Damaged or Defective Items</h2>
               <p>
-                If you receive a damaged or defective item, please contact us within 48 hours of delivery at support@void.com. Include photos of the damage and we will arrange a replacement or refund at no additional cost.
+                If you receive a damaged or defective item, contact Dryft07 through WhatsApp within 48 hours of delivery and include photos of the damage.
               </p>
             </section>
 
             <section>
               <h2 className="text-foreground mb-3">Contact</h2>
               <p>
-                For any shipping or returns questions, please contact us at support@void.com.
+                For any shipping or returns questions, contact Dryft07 through WhatsApp.
               </p>
             </section>
           </div>

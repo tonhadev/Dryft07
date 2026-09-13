@@ -90,7 +90,7 @@ const CookiesPage = () => {
             <section>
               <h2 className="text-foreground mb-3">9. Contact</h2>
               <p>
-                For any questions about our use of cookies, please contact us at privacy@void.com.
+                For any questions about our use of cookies, contact Dryft07 through WhatsApp.
               </p>
             </section>
           </div>

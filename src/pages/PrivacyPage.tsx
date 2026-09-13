@@ -52,7 +52,7 @@ const PrivacyPage = () => {
             <section>
               <h2 className="text-foreground mb-3">6. Your Rights</h2>
               <p>
-                You have the right to access, correct, or delete your personal information. You may also object to or restrict certain processing of your data. To exercise these rights, please contact us at privacy@void.com.
+                You have the right to access, correct, or delete your personal information. You may also object to or restrict certain processing of your data. To exercise these rights, contact Dryft07 through WhatsApp.
               </p>
             </section>
 
@@ -73,7 +73,7 @@ const PrivacyPage = () => {
             <section>
               <h2 className="text-foreground mb-3">9. Contact</h2>
               <p>
-                For any questions about this privacy policy, please contact us at privacy@void.com.
+                For any questions about this privacy policy, contact Dryft07 through WhatsApp.
               </p>
             </section>
           </div>

@@ -66,7 +66,7 @@ const TermsPage = () => {
             <section>
               <h2 className="text-foreground mb-3">8. Contact</h2>
               <p>
-                For any questions regarding these terms, please contact us at legal@void.com.
+                Para dúvidas sobre estes termos, fale com a Dryft07 pelo WhatsApp.
               </p>
             </section>
           </div>
