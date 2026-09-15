@@ -128,9 +128,12 @@
   .launch-poster__wordmark-image {
     display: block;
     width: 65%;
-    height: auto;
+    aspect-ratio: 1880 / 370;
+    height: clamp(150px, 12.8vw, 245px);
     margin-inline: auto;
     mix-blend-mode: multiply;
+    object-fit: cover;
+    object-position: center;
   }
 
   @media (min-width: 768px) {

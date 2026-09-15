@@ -72,7 +72,6 @@ import high11 from "@/assets/marcas/high/11.webp";
 import high12 from "@/assets/marcas/high/12.webp";
 import palmangels01 from "@/assets/marcas/palm_angels/01.webp";
 import racionais01 from "@/assets/marcas/racionais/01.webp";
-import racionais02 from "@/assets/marcas/racionais/02.webp";
 import racionais03 from "@/assets/marcas/racionais/03.webp";
 import racionais04 from "@/assets/marcas/racionais/04.webp";
 import racionais05 from "@/assets/marcas/racionais/05.webp";
@@ -823,18 +822,6 @@ export const PRODUCTS: CatalogProduct[] = [
     stock: 10,
   },
   {
-    slug: "st-racionais-02",
-    name: "Estampa 2",
-    sku: "ST-RACIONAIS-02",
-    category: "camisas-street",
-    brand: "racionais",
-    price: 39.99,
-    image: racionais02,
-    sizes: TAMANHOS_PADRAO,
-    description: "Camisa RACIONAIS com estampa frente e costas.",
-    stock: 10,
-  },
-  {
     slug: "st-racionais-03",
     name: "Estampa 3",
     sku: "ST-RACIONAIS-03",
@@ -1406,18 +1393,6 @@ export const PRODUCTS: CatalogProduct[] = [
     brand: "racionais",
     price: 54.99,
     image: racionais01,
-    sizes: TAMANHOS_PADRAO,
-    description: "Camisa RACIONAIS com estampa frente e costas.",
-    stock: 10,
-  },
-  {
-    slug: "ov-racionais-02",
-    name: "Estampa 2",
-    sku: "OV-RACIONAIS-02",
-    category: "camisas-oversize",
-    brand: "racionais",
-    price: 54.99,
-    image: racionais02,
     sizes: TAMANHOS_PADRAO,
     description: "Camisa RACIONAIS com estampa frente e costas.",
     stock: 10,

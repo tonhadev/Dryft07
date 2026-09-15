@@ -31,7 +31,6 @@ export default function Index() {
             <span>Rua</span>
             <span>Atitude</span>
           </div>
-          <p className="launch-poster__edition">Edição 01 / Dryft07</p>
           <div className="launch-poster__microcopy launch-poster__microcopy--right">
             <span>Caimento</span>
             <span>Algodão</span>
