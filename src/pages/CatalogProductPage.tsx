@@ -20,6 +20,48 @@ import {
 import { addCatalogProductToCart } from "@/lib/catalogCart";
 import { useCartStore } from "@/stores/cartStore";
 
+function ShirtCompleteDescription({ product, brandName }: { product: CatalogProduct; brandName?: string }) {
+  const isOversize = product.category === "camisas-oversize";
+  const fit = isOversize ? "modelagem oversize e caimento amplo" : "modelagem reta e caimento confortável";
+  const measures = isOversize
+    ? [["P", "56 x 72 x 22 cm"], ["M", "58 x 74 x 23 cm"], ["G", "60 x 76 x 24 cm"], ["GG", "62 x 78 x 25 cm"]]
+    : [["P", "53 x 72 x 24 cm"], ["M", "55 x 74 x 24,5 cm"], ["G", "57 x 76 x 24,5 cm"], ["GG", "59 x 78 x 25 cm"]];
+
+  return (
+    <section className="border-t border-border pt-6 text-sm leading-relaxed">
+      <h2 className="text-[11px] font-semibold uppercase tracking-[0.16em]">Descrição completa</h2>
+      <div className="mt-6 space-y-5">
+        <div>
+          <p><strong>Código identificador (SKU):</strong> {product.sku}</p>
+          <p>{brandName ?? "Dryft07"}</p>
+        </div>
+        <p>
+          Camiseta {brandName ?? "Dryft07"} com {fit}, gola redonda e estampa exclusiva.
+          Confeccionada em algodão para oferecer conforto no uso diário.
+        </p>
+        <div>
+          <h3 className="text-[11px] font-medium uppercase tracking-wide">Informações do produto</h3>
+          <p className="mt-3">Modelo: Masculino</p>
+          <p>Indicado para: dia a dia</p>
+          <p className="mt-4">Fabricado no Brasil</p>
+          <p>Composição: 100% algodão</p>
+        </div>
+        <div>
+          <h3 className="text-[11px] font-medium uppercase tracking-wide">Tabela de tamanho</h3>
+          <p className="mt-1 text-xs text-muted-foreground">Largura x Comprimento x Manga</p>
+          <div className="mt-3 space-y-0.5">
+            {measures.map(([size, measurement]) => <p key={size}>{size}: {measurement}</p>)}
+          </div>
+        </div>
+        <div>
+          <h3 className="text-[11px] font-medium uppercase tracking-wide">Marca</h3>
+          <p className="mt-3">{brandName ?? "Dryft07"}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function CatalogProductPage() {
   const { slug } = useParams();
   const product = getProductBySlug(slug);
@@ -190,23 +232,19 @@ export default function CatalogProductPage() {
               {product.stock <= 0 ? "Esgotado" : pricePending ? "Preço em breve" : "Adicionar à sacola"}
             </button>
 
-            <div className="space-y-2 border-t border-border pt-6">
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {product.description}
-              </p>
-              <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
-                Referência: {product.sku}
-              </p>
-              <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
-                Disponibilidade:{" "}
-                {product.stock > 0 ? `${product.stock} unidade(s)` : "Esgotado"}
-              </p>
-              {product.demo && (
+            {product.category === "camisas-street" || product.category === "camisas-oversize" ? (
+              <ShirtCompleteDescription product={product} brandName={brand?.name} />
+            ) : (
+              <div className="space-y-2 border-t border-border pt-6">
+                <p className="text-xs text-muted-foreground leading-relaxed">{product.description}</p>
                 <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
-                  Produto de demonstração — apenas exemplo do sistema
+                  Referência: {product.sku}
                 </p>
-              )}
-            </div>
+                <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                  Disponibilidade: {product.stock > 0 ? `${product.stock} unidade(s)` : "Esgotado"}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
