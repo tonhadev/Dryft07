@@ -36,6 +36,9 @@ export default function AboutPage() {
                   Nosso catálogo está sempre em movimento, com referências que acompanham quem
                   vive a cultura urbana todos os dias.
                 </p>
+                <p className="border-l-2 border-foreground pl-4 text-foreground">
+                  Trabalhamos por pedidos. Não realizamos compras avulsas de apenas uma peça.
+                </p>
               </div>
             </div>
           </div>

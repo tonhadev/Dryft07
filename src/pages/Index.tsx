@@ -142,6 +142,7 @@ export default function Index() {
         <div className="max-w-2xl">
           <h2 className="text-sm uppercase mb-4">Sobre a loja</h2>
           <p className="text-xs text-muted-foreground leading-relaxed mb-6">
+            Trabalhamos por pedidos e não realizamos compras avulsas de apenas uma peça.
             Trabalhamos com poucas peças por coleção, feitas em algodão de gramatura alta e
             acabamento reforçado. Cada categoria tem seu próprio catálogo, e as camisas são
             organizadas por marca para facilitar sua escolha.
