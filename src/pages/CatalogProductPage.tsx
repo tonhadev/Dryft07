@@ -16,6 +16,7 @@ import {
   getProducts,
   productColors,
   productImages,
+  productSizes,
 } from "@/data/catalog";
 import { addCatalogProductToCart } from "@/lib/catalogCart";
 import { useCartStore } from "@/stores/cartStore";
@@ -23,9 +24,12 @@ import { useCartStore } from "@/stores/cartStore";
 function ShirtCompleteDescription({ product, brandName }: { product: CatalogProduct; brandName?: string }) {
   const isOversize = product.category === "camisas-oversize";
   const fit = isOversize ? "modelagem oversize e caimento amplo" : "modelagem reta e caimento confortável";
+  const sizeGuideLabel = isOversize
+    ? "Largura x Comprimento x Manga"
+    : "Altura x Barra x Manga x Ombro";
   const measures = isOversize
-    ? [["P", "56 x 72 x 22 cm"], ["M", "58 x 74 x 23 cm"], ["G", "60 x 76 x 24 cm"], ["GG", "62 x 78 x 25 cm"]]
-    : [["P", "53 x 72 x 24 cm"], ["M", "55 x 74 x 24,5 cm"], ["G", "57 x 76 x 24,5 cm"], ["GG", "59 x 78 x 25 cm"]];
+    ? [["P", "34 x 73 x 24 cm"], ["M", "35 x 76 x 25 cm"], ["G", "36 x 77 x 26 cm"], ["GG", "37 x 79 x 27 cm"]]
+    : [["M", "76 x 56 x 22 x 53 cm"], ["G", "80 x 60 x 23 x 57 cm"], ["GG", "84 x 64 x 24 x 61 cm"]];
 
   return (
     <section className="border-t border-border pt-6 text-sm leading-relaxed">
@@ -48,7 +52,7 @@ function ShirtCompleteDescription({ product, brandName }: { product: CatalogProd
         </div>
         <div>
           <h3 className="text-[11px] font-medium uppercase tracking-wide">Tabela de tamanho</h3>
-          <p className="mt-1 text-xs text-muted-foreground">Largura x Comprimento x Manga</p>
+          <p className="mt-1 text-xs text-muted-foreground">{sizeGuideLabel}</p>
           <div className="mt-3 space-y-0.5">
             {measures.map(([size, measurement]) => <p key={size}>{size}: {measurement}</p>)}
           </div>
@@ -77,6 +81,7 @@ export default function CatalogProductPage() {
   const brand = getBrand(product.brand);
   const images = productImages(product);
   const colors = productColors(product);
+  const sizes = productSizes(product);
   const pricePending = product.pricePending;
   const related = getProducts(product.category, product.brand ?? null)
     .filter((p) => p.slug !== product.slug)
@@ -87,7 +92,7 @@ export default function CatalogProductPage() {
       toast.info("Preço em breve");
       return;
     }
-    const chosen = product.sizes?.length ? size : "Único";
+    const chosen = sizes.length ? size : "Único";
     if (!chosen) {
       toast.error("Selecione um tamanho");
       return;
@@ -179,13 +184,13 @@ export default function CatalogProductPage() {
               )}
             </p>
 
-            {product.sizes?.length ? (
+            {sizes.length ? (
               <div className="space-y-2">
                 <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
                   Tamanho
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((s) => (
+                  {sizes.map((s) => (
                     <button
                       key={s}
                       onClick={() => setSize(s)}

@@ -9,7 +9,7 @@
  */
 
 import hoodieFront from "@/assets/front-hoodie.png";
-import shortBasic31 from "@/assets/shorts-basic/31.png";
+import shortBasic31 from "@/assets/shorts-basic/31.jpg";
 import blunt01 from "@/assets/marcas/blunt/01.webp";
 import blunt02 from "@/assets/marcas/blunt/02.webp";
 import blunt03 from "@/assets/marcas/blunt/03.webp";
@@ -297,6 +297,7 @@ export const BRANDS: Brand[] = [
   { slug: "santa-cruz", name: "SANTA CRUZ", categories: ["camisas-street", "camisas-oversize"] },
   { slug: "syna", name: "SYNA", categories: ["camisas-street", "camisas-oversize"] },
   { slug: "trapstar", name: "TRAPSTAR", categories: ["camisas-street", "camisas-oversize"] },
+  { slug: "tripside", name: "TRIPSIDE", categories: ["camisas-street", "camisas-oversize"] },
   { slug: "vishfi", name: "VISHFI", categories: ["camisas-street", "camisas-oversize"] },
 ];
 
@@ -305,6 +306,7 @@ export const BRANDS: Brand[] = [
 /* ------------------------------------------------------------------ */
 
 const TAMANHOS_PADRAO = ["P", "M", "G", "GG"];
+const TAMANHOS_STREET = ["M", "G", "GG"];
 export const CORES_CAMISAS = [
   "Branca",
   "Preta",
@@ -321,6 +323,12 @@ export function productColors(product: CatalogProduct): string[] {
   return product.category === "camisas-street" || product.category === "camisas-oversize"
     ? CORES_CAMISAS
     : [];
+}
+
+/** Tamanhos disponíveis por categoria. Camisas Street não trabalham com P. */
+export function productSizes(product: CatalogProduct): string[] {
+  if (product.category === "camisas-street") return TAMANHOS_STREET;
+  return product.sizes ?? [];
 }
 
 const nikeImageModules = import.meta.glob<string>("@/assets/marcas/nike/*.png", {
@@ -373,6 +381,7 @@ const BRAND_IMAGE_SETS = [
   { slug: "santa-cruz", name: "SANTA CRUZ", images: import.meta.glob<string>("@/assets/marcas/santa-cruz/*.png", { eager: true, import: "default" }) },
   { slug: "syna", name: "SYNA", images: import.meta.glob<string>("@/assets/marcas/syna/*.png", { eager: true, import: "default" }) },
   { slug: "trapstar", name: "TRAPSTAR", images: import.meta.glob<string>("@/assets/marcas/trapstar/*.png", { eager: true, import: "default" }) },
+  { slug: "tripside", name: "TRIPSIDE", images: import.meta.glob<string>("@/assets/marcas/tripside/TRIPSIDE/*.png", { eager: true, import: "default" }) },
   { slug: "vishfi", name: "VISHFI", images: import.meta.glob<string>("@/assets/marcas/vishfi/*.png", { eager: true, import: "default" }) },
 ] as const;
 

@@ -1,11 +1,11 @@
-import { CatalogProduct, productImages } from "@/data/catalog";
+import { CatalogProduct, productImages, productSizes } from "@/data/catalog";
 import { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore, CartItem } from "@/stores/cartStore";
 
 /** Converte um produto do catálogo local no formato usado pelo carrinho. */
 export function toCartProduct(product: CatalogProduct): ShopifyProduct {
   const price = { amount: String(product.price), currencyCode: "BRL" };
-  const sizes = product.sizes?.length ? product.sizes : ["Único"];
+  const sizes = productSizes(product).length ? productSizes(product) : ["Único"];
 
   return {
     node: {

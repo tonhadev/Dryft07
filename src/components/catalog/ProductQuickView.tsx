@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { CatalogProduct, formatBRL, productColors, productImages, productPath } from "@/data/catalog";
+import { CatalogProduct, formatBRL, productColors, productImages, productPath, productSizes } from "@/data/catalog";
 import { addCatalogProductToCart } from "@/lib/catalogCart";
 import { useCartStore } from "@/stores/cartStore";
 
@@ -18,7 +18,7 @@ export default function ProductQuickView({ product, onClose }: Props) {
   const setCartOpen = useCartStore((s) => s.setOpen);
 
   useEffect(() => {
-    setSize(product?.sizes?.length ? null : "Único");
+    setSize(product && productSizes(product).length ? null : "Único");
     setColor(null);
     setImageIndex(0);
   }, [product]);
@@ -26,6 +26,7 @@ export default function ProductQuickView({ product, onClose }: Props) {
   if (!product) return null;
   const images = productImages(product);
   const colors = productColors(product);
+  const sizes = productSizes(product);
   const pricePending = product.pricePending;
 
   const handleAdd = () => {
@@ -91,13 +92,13 @@ export default function ProductQuickView({ product, onClose }: Props) {
               )}
             </p>
 
-            {product.sizes?.length ? (
+            {sizes.length ? (
               <div className="space-y-2">
                 <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
                   Tamanho
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((s) => (
+                  {sizes.map((s) => (
                     <button
                       key={s}
                       onClick={() => setSize(s)}
