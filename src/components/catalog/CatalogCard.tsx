@@ -42,9 +42,12 @@ export default function CatalogCard({ product, onQuickView }: Props) {
         )}
       </Link>
 
-      <div className="pt-3 space-y-1">
-        <h3 className="text-xs uppercase line-clamp-1">{product.name}</h3>
-        <p className="text-xs text-muted-foreground">
+      <div className="space-y-1 border-b border-border pb-3 pt-3">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-xs uppercase line-clamp-1">{product.name}</h3>
+          {soldOut && <span className="shrink-0 text-[9px] uppercase text-muted-foreground">Esgotado</span>}
+        </div>
+        <p className="text-[11px] text-muted-foreground">
           {pricePending ? "Preço em breve" : formatBRL(product.price)}
           {product.compareAtPrice && (
             <span className="ml-2 line-through opacity-60">
@@ -52,7 +55,7 @@ export default function CatalogCard({ product, onQuickView }: Props) {
             </span>
           )}
         </p>
-        <div className="flex gap-2 pt-2">
+        <div className="flex gap-2 pt-3">
           <Link
             to={productPath(product)}
             className="flex-1 text-center text-[10px] uppercase tracking-wide border border-border py-2 hover:bg-secondary transition-colors"

@@ -85,10 +85,10 @@
 @layer components {
   .launch-poster {
     @apply relative grid overflow-hidden border-b border-border;
-    min-height: clamp(650px, calc(100svh - 112px), 790px);
-    grid-template-columns: minmax(7rem, 0.72fr) minmax(0, 3.4fr) minmax(6.5rem, 0.68fr);
-    grid-template-rows: auto minmax(8rem, 0.55fr) minmax(18rem, 2fr) auto;
-    padding: clamp(1.25rem, 3vw, 3rem) clamp(1rem, 5vw, 5rem) clamp(1.5rem, 3vw, 2.75rem);
+    min-height: clamp(620px, calc(100svh - 84px), 735px);
+    grid-template-columns: minmax(8.5rem, 0.88fr) minmax(0, 3.15fr) minmax(8.5rem, 0.88fr);
+    grid-template-rows: auto minmax(6rem, 0.42fr) minmax(18rem, 1.82fr) auto;
+    padding: clamp(1.25rem, 2.5vw, 2.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 2.5vw, 2.25rem);
     color: hsl(var(--poster-foreground));
     background: hsl(var(--poster));
     isolation: isolate;
@@ -127,9 +127,9 @@
 
   .launch-poster__wordmark-image {
     display: block;
-    width: 65%;
+    width: 57%;
     aspect-ratio: 1880 / 370;
-    height: clamp(150px, 12.8vw, 245px);
+    height: clamp(135px, 11vw, 205px);
     margin-inline: auto;
     mix-blend-mode: multiply;
     object-fit: cover;
@@ -148,23 +148,31 @@
   }
 
   .launch-poster__collection {
-    @apply mb-4 whitespace-nowrap text-xs font-semibold uppercase;
+    @apply mb-3 whitespace-nowrap text-[10px] font-semibold uppercase;
     letter-spacing: 0.15em;
+  }
+
+  .launch-poster__headline {
+    @apply max-w-[10rem] text-base font-semibold uppercase leading-[1.15];
+    letter-spacing: -0.03em;
   }
 
   .launch-poster__statement,
   .launch-poster__aside {
-    @apply flex flex-col text-[10px] font-medium uppercase leading-[1.5];
-    letter-spacing: 0.18em;
+    @apply text-[10px] font-medium leading-[1.55];
+    letter-spacing: 0.08em;
   }
 
-  .launch-poster__statement::before,
   .launch-poster__aside::after {
     content: "";
     width: 2rem;
     height: 1px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
     background: hsl(var(--poster-foreground));
+  }
+
+  .launch-poster__statement {
+    @apply mt-3 max-w-[11rem] text-muted-foreground;
   }
 
   .launch-poster__visual {
@@ -173,10 +181,10 @@
 
   .launch-poster__detail {
     @apply absolute overflow-hidden border border-border bg-background;
-    top: 2%;
-    right: 4%;
-    width: 43%;
-    height: 63%;
+    top: 4%;
+    right: 5%;
+    width: 40%;
+    height: 57%;
     transform: rotate(3deg);
   }
 
@@ -186,10 +194,10 @@
 
   .launch-poster__model {
     @apply absolute overflow-hidden border border-border bg-muted;
-    left: 7%;
+    left: 8%;
     bottom: 0;
-    width: 76%;
-    height: 86%;
+    width: 74%;
+    height: 91%;
     clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
   }
 
@@ -199,7 +207,8 @@
   }
 
   .launch-poster__aside {
-    @apply relative z-30 col-start-3 row-start-3 self-center justify-self-end text-right;
+    @apply relative z-30 col-start-3 row-start-3 self-center justify-self-end text-right uppercase;
+    letter-spacing: 0.16em;
   }
 
   .launch-poster__aside::after {
@@ -229,7 +238,7 @@
 
   @media (max-width: 767px) {
     .launch-poster {
-      min-height: 720px;
+      min-height: 690px;
       grid-template-columns: 5.3rem minmax(0, 1fr) 4.8rem;
       grid-template-rows: auto minmax(8rem, auto) minmax(22rem, 1fr) auto;
     }
@@ -240,13 +249,17 @@
     }
 
     .launch-poster__wordmark-image {
-      width: 120%;
+      width: 112%;
       max-width: none;
       margin-left: -10%;
     }
 
     .launch-poster__collection {
       @apply whitespace-normal text-[9px];
+    }
+
+    .launch-poster__headline {
+      @apply text-sm;
     }
 
     .launch-poster__visual {

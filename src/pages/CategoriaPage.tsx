@@ -44,7 +44,7 @@ export default function CategoriaPage() {
         <meta name="description" content={category.description} />
       </Helmet>
 
-      <section className="page-padding py-12 min-h-screen">
+      <section className="page-padding min-h-screen py-10 md:py-14">
         <nav className="text-[10px] uppercase tracking-wide text-muted-foreground mb-6">
           <Link to="/" className="hover:text-foreground transition-colors">
             Início
@@ -53,13 +53,19 @@ export default function CategoriaPage() {
           <span className="text-foreground">{category.name}</span>
         </nav>
 
-        <header className="mb-8">
-          <h1 className="text-xl uppercase mb-2">{category.name}</h1>
-          <p className="text-xs text-muted-foreground max-w-xl">{category.description}</p>
+        <header className="mb-10 border-b border-border pb-8">
+          <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-muted-foreground">Dryft07 / Catálogo</p>
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h1 className="text-xl uppercase mb-2">{category.name}</h1>
+              <p className="text-xs text-muted-foreground max-w-xl">{category.description}</p>
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Pedidos sob encomenda</p>
+          </div>
         </header>
 
         {(category.hasBrands || category.slug === "shorts-basic") && (
-          <div className="-mx-4 md:mx-0 mb-8 border-b border-border">
+          <div className="-mx-4 md:mx-0 mb-10 border-b border-border">
             <div className="flex gap-2 overflow-x-auto px-4 md:px-0 pb-3 scrollbar-none">
               <button
                 onClick={() => selectBrand(null)}
@@ -106,7 +112,7 @@ export default function CategoriaPage() {
         ) : (
           <div
             key={brandParam ?? "todas"}
-            className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 animate-fade-in"
+            className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 md:gap-x-6 md:gap-y-10 xl:grid-cols-4 xl:gap-x-8 animate-fade-in"
           >
             {products.map((product) => (
               <CatalogCard key={product.slug} product={product} onQuickView={setQuickView} />

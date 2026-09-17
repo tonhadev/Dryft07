@@ -23,6 +23,9 @@ export default function Navbar() {
   return (
     <>
       <header className="nav-depth fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border text-foreground">
+        <div className="flex min-h-7 items-center justify-center bg-primary px-4 py-1 text-center text-[9px] uppercase tracking-[0.14em] text-primary-foreground">
+          Pedidos sob encomenda · Não realizamos vendas de peça avulsa
+        </div>
         <nav className="nav-height flex items-center justify-between gap-4 page-padding">
           {/* Esquerda */}
           <div className="flex items-center gap-4">
