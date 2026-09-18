@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import CatalogCard from '@/components/catalog/CatalogCard';
 import ProductQuickView from '@/components/catalog/ProductQuickView';
-import { CATEGORIES, CatalogProduct, categoryPath, getFeaturedProducts } from '@/data/catalog';
+import { VISIBLE_CATEGORIES, CatalogProduct, categoryPath, getFeaturedProducts } from '@/data/catalog';
 import heroImage from '@/assets/hero-image.webp';
 import heroDetail from '@/assets/marcas/chronic/02.webp';
 import dryftWordmark from '@/assets/dryft-wordmark.png';
@@ -100,7 +100,7 @@ export default function Index() {
           </Link>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {CATEGORIES.map((category) => (
+          {VISIBLE_CATEGORIES.map((category) => (
             <Link
               key={category.slug}
               to={categoryPath(category.slug)}
@@ -156,7 +156,7 @@ export default function Index() {
             organizadas por marca para facilitar sua escolha.
           </p>
           <Link
-            to={categoryPath('moletom-oversize')}
+            to={categoryPath('camisas-street')}
             className="inline-block border border-border text-xs uppercase tracking-wide px-6 py-3 hover:bg-secondary transition-colors"
           >
             Conhecer os catálogos

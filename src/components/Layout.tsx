@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import { CATEGORIES, categoryPath } from "@/data/catalog";
+import { VISIBLE_CATEGORIES, categoryPath } from "@/data/catalog";
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,7 +24,7 @@ export default function Layout({ children, showHero = false }: LayoutProps) {
           <div>
             <p className="mb-4 text-[10px] uppercase tracking-[0.16em] text-primary-foreground/60">Catálogos</p>
             <ul className="space-y-2">
-              {CATEGORIES.map((category) => (
+              {VISIBLE_CATEGORIES.map((category) => (
                 <li key={category.slug}>
                   <Link className="transition-opacity hover:opacity-60" to={categoryPath(category.slug)}>
                     {category.name}

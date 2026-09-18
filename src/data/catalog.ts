@@ -267,6 +267,11 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
+/** Categorias exibidas nas vitrines e menus da loja. */
+export const VISIBLE_CATEGORIES = CATEGORIES.filter(
+  (category) => category.slug !== "moletom-oversize",
+);
+
 /* ------------------------------------------------------------------ */
 /* MARCAS — adicione novas marcas aqui                                 */
 /* ------------------------------------------------------------------ */
@@ -435,8 +440,7 @@ const SHORTS_BASIC_PRODUCTS: CatalogProduct[] = Object.entries(shortsBasicImageM
       name: `Short Basic ${index + 1}`,
       sku: `SH-BASIC-${itemNumber}`,
       category: "shorts-basic" as const,
-      price: 0,
-      pricePending: true,
+      price: 39.99,
       image,
       sizes: TAMANHOS_PADRAO,
       colors: ["Preta"],

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { CATEGORIES, categoryPath } from '@/data/catalog';
+import { VISIBLE_CATEGORIES, categoryPath } from '@/data/catalog';
 
 interface OffCanvasMenuProps {
   open: boolean;
@@ -96,7 +96,7 @@ export default function OffCanvasMenu({ open, onClose, onOpenSearch }: OffCanvas
                   Início
                 </Link>
               </li>
-              {CATEGORIES.map((category) => (
+              {VISIBLE_CATEGORIES.map((category) => (
                 <li key={category.slug}>
                   <Link
                     to={categoryPath(category.slug)}

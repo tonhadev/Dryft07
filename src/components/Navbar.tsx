@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 import { useCartStore } from '@/stores/cartStore';
-import { CATEGORIES, categoryPath } from '@/data/catalog';
+import { VISIBLE_CATEGORIES, categoryPath } from '@/data/catalog';
 import OffCanvasMenu from './OffCanvasMenu';
 import SearchPanel from './SearchPanel';
 import CartDrawer from './CartDrawer';
@@ -53,7 +53,7 @@ export default function Navbar() {
                 Início
               </Link>
             </li>
-            {CATEGORIES.map((category) => (
+            {VISIBLE_CATEGORIES.map((category) => (
               <li key={category.slug}>
                 <Link
                   to={categoryPath(category.slug)}
